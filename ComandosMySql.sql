@@ -10,7 +10,7 @@ FROM(
 )TB;
 
  
-/* Búsqueda en texto binario (attribute:string with text to search) */
+/* Búsqueda en texto binario: Diferencía entre mayúsculas y minúsculas (attribute:string with text to search) */
 /*<one or more arbitrary character>%<first name>_<second name>%<zero or more arbitrary characters>*/
 SELECT
 *
