@@ -1,7 +1,7 @@
 
 /*
 Phone validation
-A record is correct if the IP it contains is a valid IPv4 address, and either the first or the second component in the host part is a two-digit number.
+The record is valid if its phone_number is a valid American or Canadian phone number, which means that it has a format of 1-###-###-#### or (1)###-###-####, where # stands for any digit from 0 to 9.
 */
 SELECT
 name,
@@ -12,7 +12,10 @@ WHERE REGEXP_LIKE(phone_number,'^1-[0-9]{3}-[0-9]{3}-[0-9]{4}$')=1
 OR REGEXP_LIKE(phone_number,'^\\(1\\)[0-9]{3}-[0-9]{3}-[0-9]{4}$')=1
 ORDER BY surname;
 
-/*ip validation*/
+/*
+ip validation
+A record is correct if the IP it contains is a valid IPv4 address, and either the first or the second component in the host part is a two-digit number.
+*/
 SELECT
 	id,
 	ip
