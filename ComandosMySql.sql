@@ -18,6 +18,12 @@ FROM users
 WHERE BINARY attribute LIKE CONCAT('%','\%',first_name,'_',second_name,'\%','%')
   AND LENGTH(attribute)>LENGTH(first_name+second_name)+4
   AND LEFT(attribute,1) NOT IN('%')
-
 ORDER BY attribute ASC;
+
+
+/*IF ELSE*/
+SELECT id, IF (given_answer IS NULL, 'no answer', IF(correct_answer=given_answer,'correct','incorrect') ) AS checks
+FROM answers
+ORDER BY id;
+
 
