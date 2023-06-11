@@ -59,3 +59,37 @@ FROM emails
 ORDER BY size DESC;
 
 
+/*SUM CASE*/
+SELECT
+country,
+SUM(
+  CASE leisure_activity_type
+    WHEN 'Adventure park' THEN number_of_places
+    ELSE 0
+  END
+) as 'adventure_park',
+SUM(
+  CASE leisure_activity_type
+    WHEN 'Golf' THEN number_of_places
+    ELSE 0
+  END
+) as 'golf',
+SUM(
+  CASE leisure_activity_type
+    WHEN 'River cruise' THEN number_of_places
+    ELSE 0
+  END
+) as 'river_cruise',
+SUM(
+  CASE leisure_activity_type
+    WHEN 'Kart racing' THEN number_of_places
+    ELSE 0
+  END
+) as 'kart_racing'
+FROM countryActivities
+GROUP BY country
+ORDER BY country ASC;
+
+
+
+
