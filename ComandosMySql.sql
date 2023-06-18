@@ -91,5 +91,12 @@ GROUP BY country
 ORDER BY country ASC;
 
 
-
+/*Cross join all with all*/
+SELECT
+dep_name,
+emp_name
+FROM departments
+CROSS JOIN employees 
+ORDER BY dep_name,emp_name;
+  
 
