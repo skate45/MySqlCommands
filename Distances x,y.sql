@@ -17,7 +17,7 @@ FROM(
 WHERE distance<5
 ORDER BY place1,place2;
 
-*/Using point function*/
+/*Using point function*/
 select l.name place1,
    r.name place2
 from sights l, sights r
