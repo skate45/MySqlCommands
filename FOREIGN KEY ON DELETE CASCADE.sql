@@ -1,3 +1,4 @@
+--on DELETE CASCADE
 ALTER TABLE groupcourses ADD FOREIGN KEY (course_id)
     REFERENCES courses(id) ON DELETE CASCADE;
 
