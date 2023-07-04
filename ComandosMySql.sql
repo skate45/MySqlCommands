@@ -98,5 +98,16 @@ emp_name
 FROM departments
 CROSS JOIN employees 
 ORDER BY dep_name,emp_name;
-  
+
+
+/*SELECT TOP + AVERAGE*/
+SELECT
+	ROUND(AVG(grade),2) AS average_grade 
+	FROM(
+		SELECT
+		grade
+		FROM students
+		ORDER BY grade DESC
+		LIMIT 5
+	)TB;
 
