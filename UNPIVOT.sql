@@ -15,29 +15,56 @@ id	name	          date_of_birth	salary
 */
 
 SELECT id,column_name,value FROM(
-		SELECT
-		id,
-		TB2.COLUMNNAME AS column_name,
-		CASE
-			WHEN TB2.COLUMNNAME='name'
-				THEN name
-			WHEN TB2.COLUMNNAME='date_of_birth'
-				THEN date_of_birth
-			WHEN TB2.COLUMNNAME='salary'
-				THEN salary
-		END AS value,
-		CASE
-			WHEN TB2.COLUMNNAME='name' THEN 1
-			WHEN TB2.COLUMNNAME='date_of_birth' THEN 2
-			WHEN TB2.COLUMNNAME='salary' THEN 3
-		END AS ORDEN
-		FROM workers_info
-		cross join
-		(
+	SELECT
+	id,
+	TB2.COLUMNNAME AS column_name,
+	CASE
+		WHEN TB2.COLUMNNAME='name'
+			THEN name
+		WHEN TB2.COLUMNNAME='date_of_birth'
+			THEN date_of_birth
+		WHEN TB2.COLUMNNAME='salary'
+			THEN salary
+	END AS value,
+	CASE
+		WHEN TB2.COLUMNNAME='name' THEN 1
+		WHEN TB2.COLUMNNAME='date_of_birth' THEN 2
+		WHEN TB2.COLUMNNAME='salary' THEN 3
+	END AS ORDEN
+	FROM workers_info
+	cross join
+	(
 		select 'name' as COLUMNNAME
 		union all select 'date_of_birth'
 		union all select 'salary'
-		)TB2
-	)TB3
-	WHERE TB3.value IS NOT NULL
-	ORDER BY id ASC,ORDEN ASC;
+	)TB2
+)TB3
+WHERE TB3.value IS NOT NULL
+ORDER BY id ASC,ORDEN ASC;
+
+/*
+ORDER BY FIELD VALUES:
+*/
+SELECT id,column_name,value FROM(
+	SELECT
+	id,
+	TB2.COLUMNNAME AS column_name,
+	CASE
+		WHEN TB2.COLUMNNAME='name'
+			THEN name
+		WHEN TB2.COLUMNNAME='date_of_birth'
+			THEN date_of_birth
+		WHEN TB2.COLUMNNAME='salary'
+			THEN salary
+	END AS value
+	FROM workers_info
+	cross join
+	(
+	select 'name' as COLUMNNAME
+	union all select 'date_of_birth'
+	union all select 'salary'
+	)TB2
+)TB3
+WHERE TB3.value IS NOT NULL
+ORDER BY id ASC,FIELD(column_name, 'name', 'date_of_birth', 'salary');
+	
